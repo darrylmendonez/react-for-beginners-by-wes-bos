@@ -6,14 +6,18 @@ import './css/style.css';
 import App from './components/App';
 
 import StorePicker from './components/StorePicker';
+import NotFound from './components/NotFound';
 
 const Root = () => {
   return (
     <BrowserRouter>
-      <Match exactly pattern="/" component={StorePicker} />
-    <Match exactly pattern="/store/:storeId" component={App} />
+      <div>
+        <Match exactly pattern="/" component={StorePicker} />
+        <Match pattern="/store/:storeId" component={App} />
+        <Miss component={NotFound} />
+      </div>
     </BrowserRouter>
   )
 }
 
-render(<App/>, document.querySelector('#main'));
+render(<Root/>, document.querySelector('#main'));
